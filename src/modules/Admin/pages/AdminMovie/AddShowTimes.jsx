@@ -86,12 +86,7 @@ const AddShowTimes = () => {
 					{/* hệ thống rạp */}
 					<div className="form-group mb-4">
 						<label className="form-label">Hệ Thống Rạp</label>
-						<select
-							className="form-select"
-							type="text"
-							// value={theaterName}
-							onChange={handleChange}
-						>
+						<select className="form-select" type="text" onChange={handleChange}>
 							{cinemaSystem?.map((cinemaName) => {
 								return (
 									<option

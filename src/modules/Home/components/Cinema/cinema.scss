@@ -211,6 +211,10 @@
 			display: block;
 			height: auto;
 
+			.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+				line-height: 2;
+			}
+
 			.cinema-info-mobile {
 				.cinema-name-mobile {
 					font-size: 16px;

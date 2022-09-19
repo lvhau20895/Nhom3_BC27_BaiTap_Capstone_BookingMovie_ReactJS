@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import ticketAPI from "apis/ticketAPI";
 
 const initialState = {
-	ticket: [],
+	tickets: [],
 	isLoading: null,
 	error: false,
 };

@@ -14,6 +14,7 @@ import EditMovie from "modules/Admin/pages/AdminMovie/EditMovie";
 import AddShowTimes from "modules/Admin/pages/AdminMovie/AddShowTimes";
 import UserList from "modules/Admin/pages/AdminUser/UserList";
 import AddUser from "modules/Admin/pages/AdminUser/AddUser";
+import EditUser from "modules/Admin/pages/AdminUser/EditUser";
 
 const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
@@ -21,6 +22,7 @@ const Login = lazy(() => import("modules/Authentication/pages/Login"));
 const Register = lazy(() => import("modules/Authentication/pages/Register"));
 const Ticket = lazy(() => import("modules/Ticket/pages/Ticket"));
 const User = lazy(() => import("modules/User/page/User"));
+const ErrorPage = lazy(() => import("modules/Error/page/ErrorPage"));
 
 function App() {
 	return (
@@ -54,7 +56,7 @@ function App() {
 
 						<Route path="/admin/userList" element={<UserList />} />
 						<Route path="/admin/addUser" element={<AddUser />} />
-						{/* <Route path="/admin/editUser" element={<UserList />} /> */}
+						<Route path="/admin/editUser/:userId" element={<EditUser />} />
 						{/* AdminUser, AdminShowtimes */}
 					</Route>
 
@@ -77,6 +79,8 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 					</Route>
+
+					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</ScrollToTop>
 		</Suspense>

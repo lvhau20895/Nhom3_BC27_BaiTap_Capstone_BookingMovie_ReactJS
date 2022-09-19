@@ -1,16 +1,16 @@
-.ticket {
+.book {
 	width: 100%;
 	height: 100%;
 	padding: 20px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-	.ticket-title {
+	.book-title {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
 		margin-bottom: 20px;
 
-		.ticket-img {
+		.book-img {
 			box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 			border-radius: 5px;
 
@@ -19,17 +19,17 @@
 			}
 		}
 
-		.ticket-name {
+		.book-name {
 			width: 100%;
 			text-align: center;
 			font-size: 30px;
 		}
 	}
 
-	.ticket-info {
+	.book-info {
 		margin: 10px 0;
 		overflow: hidden;
-		.ticket-item {
+		.book-item {
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
@@ -49,7 +49,7 @@
 
 		.list {
 			height: 100px;
-			.ticket-list {
+			.book-list {
 				height: 100px;
 				overflow-y: scroll;
 				padding-right: 10px;
@@ -69,7 +69,7 @@
 		}
 	}
 
-	.ticket-buy {
+	.book-buy {
 		border-top: 2px dotted #000;
 
 		.buy {
@@ -88,7 +88,7 @@
 			}
 		}
 
-		.ticket-btn {
+		.book-btn {
 			width: 100%;
 			margin: 10px 0 0;
 			button {
@@ -104,6 +104,26 @@
 				cursor: pointer;
 				&:hover {
 					background: rgb(242, 184, 76);
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.book {
+		.book-title {
+			.book-name {
+				font-size: 18px;
+			}
+		}
+
+		.book-info {
+			.book-item {
+				margin-bottom: 10px;
+				h3 {
+					font-size: 16px;
+					width: 200px;
 				}
 			}
 		}

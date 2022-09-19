@@ -1,6 +1,9 @@
-import { Table, Tooltip } from "antd";
-import Search from "antd/lib/transfer/search";
-import { getUsers } from "modules/Admin/slices/userSlice";
+import { notification, Table, Tooltip } from "antd";
+import {
+	deleteUser,
+	getUsers,
+	searchUser,
+} from "modules/Admin/slices/userSlice";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,15 +11,43 @@ import cn from "classnames";
 import { AiOutlineCloseCircle, AiOutlineEdit } from "react-icons/ai";
 
 import "./userList.scss";
+import { useNavigate } from "react-router-dom";
+import Search from "antd/lib/input/Search";
 
 const UserList = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { users } = useSelector((state) => state.user);
 
 	useEffect(() => {
 		dispatch(getUsers());
 	}, []);
+
+	const handleDelete = async (account) => {
+		try {
+			await dispatch(deleteUser(account)).unwrap();
+			notification.success({
+				message: "Xóa người dùng thành công",
+			});
+		} catch (error) {
+			notification.error({
+				message: "Xóa người dùng thất bại",
+				description: error,
+			});
+		}
+	};
+
+	const handleEdit = (account) => {
+		navigate(`/admin/editUser/${account}`);
+	};
+
+	const handleSearch = (value) => {
+		if (value !== "") {
+			return dispatch(searchUser(value));
+		}
+		return dispatch(searchUser());
+	};
 
 	const columns = [
 		{
@@ -71,18 +102,24 @@ const UserList = () => {
 				</p>
 			),
 			email: <p>{user.email}</p>,
-			hoTen: <p>{user.email}</p>,
+			hoTen: <p>{user.hoTen}</p>,
 			soDt: <p>{user.soDT}</p>,
 			thaoTac: (
 				<>
 					<Tooltip title="Sửa">
-						<button className="user-list-btn edit">
+						<button
+							className="user-list-btn edit"
+							onClick={() => handleEdit(user.taiKhoan)}
+						>
 							<AiOutlineEdit />
 						</button>
 					</Tooltip>
 
 					<Tooltip title="Xóa">
-						<button className="user-list-btn delete">
+						<button
+							className="user-list-btn delete"
+							onClick={() => handleDelete(user.taiKhoan)}
+						>
 							<AiOutlineCloseCircle />
 						</button>
 					</Tooltip>
@@ -91,13 +128,11 @@ const UserList = () => {
 		});
 	}
 
-	const handleSearch = (value) => {};
-
 	return (
 		<div className="user-list">
 			<div className="w-50 mb-3">
 				<Search
-					placeholder="Nhập tên User"
+					placeholder="Nhập tên tài khoản"
 					allowClear
 					enterButton="Tìm Kiếm"
 					size="large"
@@ -107,7 +142,7 @@ const UserList = () => {
 
 			<h1 className="text-danger mb-5 fs-2">Danh Sách User</h1>
 
-			<div>
+			<div className="user-list-details">
 				<Table columns={columns} dataSource={data} />
 			</div>
 		</div>

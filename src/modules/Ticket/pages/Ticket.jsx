@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import BookSeats from "../components/BookSeats";
 import BookTickets from "../components/BookTickets";
 
+import "./ticket.scss";
+
 const Ticket = () => {
 	const [checkList, setCheckList] = useState([]);
 
@@ -36,24 +38,24 @@ const Ticket = () => {
 	} = useRequest(() => ticketAPI.getTicketDetails(ticketId));
 
 	return (
-		<div style={{ margin: "64px 0 0" }}>
-			<Row>
-				<Col span={16}>
+		<div style={{ margin: "64px 0 0" }} className="ticket">
+			<div className="ticket-main">
+				<div className="ticket-seat-list">
 					<BookSeats
 						tickets={tickets}
 						checkList={checkList}
 						handleChecked={handleChecked}
 					/>
-				</Col>
+				</div>
 
-				<Col span={8}>
+				<div className="ticket-booking">
 					<BookTickets
 						ticketId={ticketId}
 						tickets={tickets}
 						checkList={checkList}
 					/>
-				</Col>
-			</Row>
+				</div>
+			</div>
 		</div>
 	);
 };

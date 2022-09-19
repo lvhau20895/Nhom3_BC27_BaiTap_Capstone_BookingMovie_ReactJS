@@ -26,7 +26,7 @@ const Login = () => {
 			await dispatch(login(values)).unwrap();
 			await swal("Đăng Nhập Thành Công!", "You clicked the 'OK'!", "success");
 
-			navigate("/");
+			navigate(-1);
 		} catch (error) {
 			notification.error({
 				message: "Đăng nhập thất bại",

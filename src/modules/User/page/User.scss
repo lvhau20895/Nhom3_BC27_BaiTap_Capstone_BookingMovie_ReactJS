@@ -1,5 +1,48 @@
 .user {
 	.user-main {
 		display: flex;
+
+		.user-info {
+			width: 300px;
+			height: 100vh;
+			background: #eee;
+			text-align: center;
+			box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+			padding: 20px;
+
+			.user-photo {
+				width: 200px;
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+				margin: 0 auto;
+				background: orange;
+				color: #eee;
+				border-radius: 50%;
+				font-size: 100px;
+				font-weight: 500;
+			}
+
+			.user-name {
+				margin-top: 20px;
+				font-size: 30px;
+				font-weight: 500;
+			}
+
+			.user-info-booking {
+				margin-top: 250px;
+			}
+		}
+
+		.user-show {
+			width: 100%;
+			margin: 20px 50px;
+
+			.infomation {
+			}
+
+			.history {
+			}
+		}
 	}
 }

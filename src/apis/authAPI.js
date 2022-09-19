@@ -19,6 +19,55 @@ const authAPI = {
 			},
 		});
 	},
+
+	getUserType: () => {
+		return axiosClient.get("QuanLyNguoiDung/LayDanhSachLoaiNguoiDung");
+	},
+
+	addUser: (values) => {
+		return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", {
+			...values,
+			maNhom: "GP03",
+		});
+	},
+
+	deleteUser: (account) => {
+		return axiosClient.delete("QuanLyNguoiDung/XoaNguoiDung", {
+			params: {
+				taiKhoan: account,
+			},
+		});
+	},
+
+	getUserDetails: (account) => {
+		return axiosClient.post(
+			// `/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${account}`
+			"/QuanLyNguoiDung/LayThongTinNguoiDung",
+			{},
+			{
+				params: {
+					taiKhoan: account,
+				},
+			}
+		);
+	},
+
+	updateUser: (values) => {
+		console.log(values);
+		return axiosClient.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
+			...values,
+			maNhom: "GP03",
+		});
+	},
+
+	searchUser: (value) => {
+		return axiosClient.get("QuanLyNguoiDung/TimKiemNguoiDung", {
+			params: {
+				maNhom: "GP03",
+				tuKhoa: value,
+			},
+		});
+	},
 };
 
 export default authAPI;

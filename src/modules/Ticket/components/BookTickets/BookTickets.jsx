@@ -54,10 +54,10 @@ const BookTickets = ({ ticketId, tickets, checkList }) => {
 	};
 
 	return (
-		<div className="ticket">
-			<div className="ticket-details">
-				<div className="ticket-title">
-					<div className="ticket-img">
+		<div className="book">
+			<div className="book-details">
+				<div className="book-title">
+					<div className="book-img">
 						<img
 							width={150}
 							height={200}
@@ -65,21 +65,21 @@ const BookTickets = ({ ticketId, tickets, checkList }) => {
 							alt={tickets?.thongTinPhim.tenPhim}
 						/>
 					</div>
-					<h1 className="ticket-name">{tickets?.thongTinPhim.tenPhim}</h1>
+					<h1 className="book-name">{tickets?.thongTinPhim.tenPhim}</h1>
 				</div>
 
-				<div className="ticket-info">
-					<div className="ticket-item">
+				<div className="book-info">
+					<div className="book-item">
 						<h3>Cụm rạp:</h3>
 						<p>{tickets?.thongTinPhim.tenCumRap}</p>
 					</div>
 
-					<div className="ticket-item">
+					<div className="book-item">
 						<h3>Tên rạp:</h3>
 						<p>{tickets?.thongTinPhim.tenRap}</p>
 					</div>
 
-					<div className="ticket-item">
+					<div className="book-item">
 						<h3>Ngày giờ chiếu:</h3>
 						<p>
 							{tickets?.thongTinPhim.ngayChieu}
@@ -90,25 +90,25 @@ const BookTickets = ({ ticketId, tickets, checkList }) => {
 						</p>
 					</div>
 
-					<div className="ticket-item">
+					<div className="book-item">
 						<h3>Địa chỉ:</h3>
 						<p>{tickets?.thongTinPhim.diaChi}</p>
 					</div>
 
-					<div className="ticket-item list">
+					<div className="book-item list">
 						<h3>Ghế đã chọn:</h3>
-						<p className="ticket-list">{seatList}</p>
+						<p className="book-list">{seatList}</p>
 					</div>
 				</div>
 
-				<div className="ticket-buy">
+				<div className="book-buy">
 					<div className="buy">
 						<h3 className="total">Thành Tiền: </h3>
 						<p className="price">{Number(totalPrice).toLocaleString()} VNĐ</p>
 					</div>
 
-					<div className="ticket-btn">
-						<button className="ticket-btn" onClick={handleTicket}>
+					<div className="book-btn">
+						<button className="book-btn" onClick={handleTicket}>
 							ĐẶT VÉ
 						</button>
 					</div>

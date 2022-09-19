@@ -1,25 +1,61 @@
+import useRequest from "hooks/useRequest";
 import React from "react";
-import UserBooking from "../components/UserBooking";
+import authAPI from "apis/authAPI";
+import cn from "classnames";
 import UserInfo from "../components/UserInfo";
 
 import "./User.scss";
+import UserBooking from "../components/UserBooking";
 
 const User = () => {
+	const userAccount = JSON.parse(localStorage.getItem("user")) || null;
+
+	const { data: userInfo } = useRequest(() =>
+		authAPI.getUserDetails(userAccount.taiKhoan)
+	);
+
+	const numTickets = userInfo?.thongTinDatVe.reduce((total, item) => {
+		return total + item.danhSachGhe.length;
+	}, 0);
+
+	const numBooking = userInfo?.thongTinDatVe.length;
+
 	return (
 		<div style={{ marginTop: "64px" }} className="user">
-			<h1>User</h1>
 			<div className="user-main">
 				<div className="user-info">
-					<div className="user-img">
-						<img src="" alt="" />
+					<p className="user-photo">
+						{userInfo?.taiKhoan.slice(0, 1).toUpperCase()}
+					</p>
+					<p className="user-name">{userInfo?.hoTen}</p>
+					<p
+						className={cn("text-primary", {
+							"text-danger": userInfo?.maLoaiNguoiDung === "QuanTri",
+						})}
+					>
+						{userInfo?.loaiNguoiDung.tenLoai}
+					</p>
+
+					<div className="user-info-booking">
+						<p>
+							Số lần đặt vé:{" "}
+							<strong className="text-success">{numBooking}</strong>
+						</p>
+						<p>
+							Số vé đã đặt:{" "}
+							<strong className="text-success">{numTickets}</strong>
+						</p>
 					</div>
-					<h3>Name</h3>
 				</div>
 
 				<div className="user-show">
-					<UserInfo />
+					<div className="infomation">
+						<UserInfo userAccount={userAccount} />
+					</div>
 
-					<UserBooking />
+					<div className="history">
+						<UserBooking userInfo={userInfo} />
+					</div>
 				</div>
 			</div>
 		</div>
