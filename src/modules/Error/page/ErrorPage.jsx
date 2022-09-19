@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 
 import "./style.css";
 
 const ErrorPage = () => {
+	TitleFunction("404");
+
 	return (
 		<div className="error">
 			<div class="mainbox">

@@ -6,8 +6,11 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 
 import mainLayout from "./mainLayout.module.scss";
+import { TitleFunction } from "utils/TitleFunction";
 
 const MainLayout = () => {
+	TitleFunction("Movie");
+
 	return (
 		<Layout>
 			<Layout.Header className={mainLayout.mainHeader}>

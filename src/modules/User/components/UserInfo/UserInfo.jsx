@@ -9,23 +9,20 @@ import swal from "sweetalert";
 
 import "./userInfo.scss";
 
-const UserInfo = ({ userAccount }) => {
+const UserInfo = ({ userInfo }) => {
 	const dispatch = useDispatch();
-
-	const { data: user } = useRequest(() =>
-		authAPI.getUserDetails(userAccount.taiKhoan)
-	);
+	console.log(userInfo);
 
 	useEffect(() => {
 		reset({
-			taiKhoan: user?.taiKhoan,
-			matKhau: user?.matKhau,
-			email: user?.email,
-			soDt: user?.soDT,
-			hoTen: user?.hoTen,
-			maLoaiNguoiDung: user?.maLoaiNguoiDung,
+			taiKhoan: userInfo?.taiKhoan,
+			matKhau: userInfo?.matKhau,
+			email: userInfo?.email,
+			soDt: userInfo?.soDT,
+			hoTen: userInfo?.hoTen,
+			maLoaiNguoiDung: userInfo?.maLoaiNguoiDung,
 		});
-	}, [user]);
+	}, [userInfo]);
 
 	const {
 		reset,
@@ -39,7 +36,7 @@ const UserInfo = ({ userAccount }) => {
 			email: "",
 			soDt: "",
 			hoTen: "",
-			maLoaiNguoiDung: "",
+			maLoaiNguoiDung: null,
 		},
 		mode: "onTouched",
 	});
@@ -63,7 +60,7 @@ const UserInfo = ({ userAccount }) => {
 
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="row">
-					<div className="col-6">
+					<div className="col-12 col-sm-12 col-md-12 col-lg-6">
 						{/* tài khoản */}
 						<div className="form-group mb-3">
 							<label className="form-label">Tài Khoản</label>
@@ -136,7 +133,7 @@ const UserInfo = ({ userAccount }) => {
 						</div>
 					</div>
 
-					<div className="col-6">
+					<div className="col-12 col-sm-12 col-md-12 col-lg-6">
 						{/* số điện thoại */}
 						<div className="form-group mb-3">
 							<label className="form-label">Số Điện Thoại</label>

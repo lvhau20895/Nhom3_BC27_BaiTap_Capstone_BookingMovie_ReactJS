@@ -13,10 +13,13 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 
 import "./addShowtimes.scss";
 
 const AddShowTimes = () => {
+	TitleFunction("Add Showtimes");
+
 	const dispatch = useDispatch();
 	const { movieId } = useParams();
 

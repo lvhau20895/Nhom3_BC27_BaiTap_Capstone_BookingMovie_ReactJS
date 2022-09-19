@@ -6,8 +6,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 
 const AddUser = () => {
+	TitleFunction("Add User");
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

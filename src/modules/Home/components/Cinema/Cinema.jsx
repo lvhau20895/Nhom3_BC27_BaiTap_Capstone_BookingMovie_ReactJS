@@ -3,6 +3,7 @@ import { Collapse, Tabs } from "antd";
 import useRequest from "hooks/useRequest";
 import cinemaAPI from "apis/cinemaAPI";
 import { useNavigate } from "react-router-dom";
+import { HashLoader } from "react-spinners";
 
 import * as dayjs from "dayjs";
 import "./cinema.scss";
@@ -10,7 +11,9 @@ import "./cinema.scss";
 const Cinema = () => {
 	const navigate = useNavigate();
 
-	const { data: cinema } = useRequest(() => cinemaAPI.getMovieSchedule());
+	const { data: cinema, isLoading } = useRequest(() =>
+		cinemaAPI.getMovieSchedule()
+	);
 
 	const handleTicket = (ticketId) => {
 		navigate(`/ticket/${ticketId}`);
@@ -201,6 +204,26 @@ const Cinema = () => {
 						);
 					})}
 				</Collapse>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					height: "50px",
+				}}
+			>
+				<HashLoader
+					style={{
+						margin: "0 auto",
+						borderColor: "#fff",
+						display: "block",
+					}}
+					color={"red"}
+					loading={isLoading}
+					size={30}
+				/>
 			</div>
 		</div>
 	);

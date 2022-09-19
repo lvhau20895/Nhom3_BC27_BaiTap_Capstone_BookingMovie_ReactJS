@@ -4,10 +4,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 
 import "./addMovie.scss";
 
 const AddMovie = () => {
+	TitleFunction("Add Movie");
+
 	const [imgPreview, setImgPreview] = useState("");
 
 	const navigate = useNavigate();

@@ -4,11 +4,14 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { TitleFunction } from "utils/TitleFunction";
 import { login } from "../slices/authSlice";
 
 import "./login.scss";
 
 const Login = () => {
+	TitleFunction("Login");
+
 	const navigate = useNavigate();
 	const { handleSubmit, control } = useForm({
 		defaultValues: {
@@ -26,7 +29,7 @@ const Login = () => {
 			await dispatch(login(values)).unwrap();
 			await swal("Đăng Nhập Thành Công!", "You clicked the 'OK'!", "success");
 
-			navigate(-1);
+			navigate("/");
 		} catch (error) {
 			notification.error({
 				message: "Đăng nhập thất bại",

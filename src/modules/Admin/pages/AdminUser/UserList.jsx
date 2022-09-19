@@ -13,8 +13,11 @@ import { AiOutlineCloseCircle, AiOutlineEdit } from "react-icons/ai";
 import "./userList.scss";
 import { useNavigate } from "react-router-dom";
 import Search from "antd/lib/input/Search";
+import { TitleFunction } from "utils/TitleFunction";
 
 const UserList = () => {
+	TitleFunction("User List");
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

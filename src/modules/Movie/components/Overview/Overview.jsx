@@ -6,11 +6,7 @@ import React from "react";
 import "./overview.scss";
 
 const Overview = ({ movieId }) => {
-	const {
-		data: movie,
-		isLoading,
-		error,
-	} = useRequest(() => movieAPI.getMovieDetails(movieId));
+	const { data: movie } = useRequest(() => movieAPI.getMovieDetails(movieId));
 
 	if (!movie) {
 		return null;

@@ -28,6 +28,8 @@ const BookTickets = ({ ticketId, tickets, checkList }) => {
 		danhSachVe: checkList,
 	};
 
+	console.log(infoBooking);
+
 	const handleTicket = async () => {
 		if (!user) {
 			await swal(
@@ -36,20 +38,21 @@ const BookTickets = ({ ticketId, tickets, checkList }) => {
 				"warning"
 			);
 			navigate("/login");
-		}
-		if (seatList) {
-			try {
-				await dispatch(bookingTicket(infoBooking)).unwrap();
-				await swal("Đặt vé thành công", "You clicked the 'OK'!", "success");
-				navigate("/user");
-			} catch (error) {
-				notification.error({
-					message: "Đặt vé thất bại",
-					description: error,
-				});
-			}
 		} else {
-			swal("Vui lòng chọn ghế", "You clicked the 'OK'!", "warning");
+			if (seatList) {
+				try {
+					await dispatch(bookingTicket(infoBooking)).unwrap();
+					await swal("Đặt vé thành công", "You clicked the 'OK'!", "success");
+					navigate("/user");
+				} catch (error) {
+					notification.error({
+						message: "Đặt vé thất bại",
+						description: error,
+					});
+				}
+			} else {
+				swal("Vui lòng chọn ghế", "You clicked the 'OK'!", "warning");
+			}
 		}
 	};
 

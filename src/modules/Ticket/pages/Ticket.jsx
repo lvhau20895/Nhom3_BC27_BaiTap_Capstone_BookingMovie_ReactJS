@@ -4,6 +4,7 @@ import useRequest from "hooks/useRequest";
 import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 import BookSeats from "../components/BookSeats";
 import BookTickets from "../components/BookTickets";
 
@@ -36,6 +37,8 @@ const Ticket = () => {
 		isLoading,
 		error,
 	} = useRequest(() => ticketAPI.getTicketDetails(ticketId));
+
+	TitleFunction("Ticket");
 
 	return (
 		<div style={{ margin: "64px 0 0" }} className="ticket">

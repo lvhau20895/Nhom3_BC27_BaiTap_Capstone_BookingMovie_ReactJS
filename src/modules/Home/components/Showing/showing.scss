@@ -202,6 +202,46 @@
 	.swiper-pagination-bullet-active {
 		background: red;
 	}
+
+	.showing-modal {
+		.showing-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100vh;
+			background: rgba(0, 0, 0, 0.5);
+			cursor: pointer;
+			z-index: 9999;
+		}
+
+		.showing-video {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 99999;
+
+			.showing-close-modal {
+				position: absolute;
+				top: -30px;
+				left: 100%;
+				border: 2px solid #eee;
+				outline: none;
+				font-size: 25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				background: transparent;
+				color: #eee;
+				line-height: 15px;
+				opacity: 1;
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 992px) {
@@ -260,19 +300,52 @@
 		.showing-film {
 			.showing-card {
 				height: 350px;
+
 				.showing-btn-mobile {
 					margin-bottom: 30px;
 				}
-
-				h1 {
-					font-size: 14px;
-				}
 			}
+
+			h1 {
+				font-size: 14px;
+			}
+		}
+
+		.swiper-horizontal > .swiper-pagination-bullets,
+		.swiper-pagination-bullets.swiper-pagination-horizontal {
+			display: none;
 		}
 
 		.swiper-button-prev,
 		.swiper-button-next {
-			display: none;
+			display: block;
+		}
+
+		.swiper-button-prev::after,
+		.swiper-button-next::after {
+			color: red;
+			font-size: 50px;
+			font-weight: 700;
+		}
+
+		.showing-modal {
+			.showing-video {
+				width: 400px;
+				height: 300px;
+
+				div {
+					width: 400px !important;
+					height: 300px !important;
+					div {
+						width: 400px !important;
+						height: 300px !important;
+						iframe {
+							width: 400px;
+							height: 300px;
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -293,21 +366,31 @@
 			padding: 0 100px !important;
 		}
 
-		.swiper-horizontal > .swiper-pagination-bullets,
-		.swiper-pagination-bullets.swiper-pagination-horizontal {
-			display: none;
-		}
+		.showing-modal {
+			.showing-video {
+				width: 300px;
+				height: 200px;
 
-		.swiper-button-prev,
-		.swiper-button-next {
-			display: block;
-		}
+				.showing-close-modal {
+					top: -20px;
+					width: 25px;
+					height: 25px;
+					font-size: 15px;
+				}
 
-		.swiper-button-prev::after,
-		.swiper-button-next::after {
-			color: red;
-			font-size: 40px;
-			font-weight: 700;
+				div {
+					width: 300px !important;
+					height: 200px !important;
+					div {
+						width: 300px !important;
+						height: 200px !important;
+						iframe {
+							width: 300px;
+							height: 200px;
+						}
+					}
+				}
+			}
 		}
 	}
 }

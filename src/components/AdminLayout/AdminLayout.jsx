@@ -4,6 +4,7 @@ import { logout } from "modules/Authentication/slices/authSlice";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 import "./adminLayout.scss";
 
 const { Header, Content, Sider } = Layout;
@@ -49,6 +50,8 @@ const items = [
 ];
 
 const AdminLayout = () => {
+	TitleFunction("Admin");
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

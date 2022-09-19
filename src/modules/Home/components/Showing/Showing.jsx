@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiOutlinePlayCircle } from "react-icons/ai";
+import { AiOutlineClose, AiOutlinePlayCircle } from "react-icons/ai";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid, Navigation, Pagination } from "swiper";
+import { HashLoader } from "react-spinners";
 
 import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
@@ -11,8 +12,13 @@ import "./showing.scss";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
+import ReactPlayer from "react-player";
 
 const Showing = () => {
+	const [openModal, setOpenModal] = useState(false);
+	const [video, setVideo] = useState("");
+	const [playVideo, setPlayVideo] = useState(false);
+
 	const navigate = useNavigate();
 
 	const {
@@ -23,6 +29,17 @@ const Showing = () => {
 
 	const goToMovie = (movieId) => {
 		navigate(`/movie/${movieId}`);
+	};
+
+	const handleOpen = (trailer) => {
+		setOpenModal(true);
+		setVideo(trailer);
+		setPlayVideo(true);
+	};
+
+	const handleClose = () => {
+		setOpenModal(false);
+		setVideo("");
 	};
 
 	return (
@@ -79,7 +96,10 @@ const Showing = () => {
 											Chi Tiết
 										</button>
 									</div>
-									<button className="showing-icon-play">
+									<button
+										className="showing-icon-play"
+										onClick={() => handleOpen(movie.trailer)}
+									>
 										<AiOutlinePlayCircle />
 									</button>
 								</div>
@@ -98,6 +118,40 @@ const Showing = () => {
 					);
 				})}
 			</Swiper>
+
+			<div
+				style={{ display: openModal ? "block" : "none" }}
+				className="showing-modal"
+			>
+				<div className="showing-overlay" onClick={handleClose}></div>
+
+				<div className="showing-video">
+					<ReactPlayer playing={playVideo} url={video} controls />
+					<button className="showing-close-modal" onClick={handleClose}>
+						<AiOutlineClose />
+					</button>
+				</div>
+			</div>
+
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					height: "50px",
+				}}
+			>
+				<HashLoader
+					style={{
+						margin: "0 auto",
+						borderColor: "#fff",
+						display: "block",
+					}}
+					color={"red"}
+					loading={isLoading}
+					size={30}
+				/>
+			</div>
 		</div>
 	);
 };

@@ -1,16 +1,21 @@
 import { Button, Form, Input, notification } from "antd";
 import authAPI from "apis/authAPI";
 import useRequest from "hooks/useRequest";
+import { getUsers } from "modules/Admin/slices/userSlice";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { TitleFunction } from "utils/TitleFunction";
 
 import "./register.scss";
 
 const Register = () => {
+	TitleFunction("Register");
+
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const { handleSubmit, control } = useForm({
 		defaultValues: {
@@ -31,6 +36,7 @@ const Register = () => {
 	const onSubmit = async (values) => {
 		try {
 			await handleRegister(values);
+			await dispatch(getUsers()).unwrap();
 			swal("Đăng Ký Thành Công!", "You clicked the 'OK'!", "success");
 			navigate("/login");
 		} catch (error) {

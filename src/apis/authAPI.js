@@ -68,6 +68,10 @@ const authAPI = {
 			},
 		});
 	},
+
+	getUserInfo: () => {
+		return axiosClient.post("QuanLyNguoiDung/ThongTinTaiKhoan");
+	},
 };
 
 export default authAPI;

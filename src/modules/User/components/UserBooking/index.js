@@ -1,1 +1,1 @@
-export { default } from "./UserBooking";
+export { default } from "./UserBooking.jsx";

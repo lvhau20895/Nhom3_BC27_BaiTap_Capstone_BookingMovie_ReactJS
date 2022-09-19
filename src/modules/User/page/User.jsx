@@ -6,13 +6,12 @@ import UserInfo from "../components/UserInfo";
 
 import "./User.scss";
 import UserBooking from "../components/UserBooking";
+import { TitleFunction } from "utils/TitleFunction";
 
 const User = () => {
-	const userAccount = JSON.parse(localStorage.getItem("user")) || null;
+	TitleFunction("User Information");
 
-	const { data: userInfo } = useRequest(() =>
-		authAPI.getUserDetails(userAccount.taiKhoan)
-	);
+	const { data: userInfo } = useRequest(() => authAPI.getUserInfo());
 
 	const numTickets = userInfo?.thongTinDatVe.reduce((total, item) => {
 		return total + item.danhSachGhe.length;
@@ -29,7 +28,7 @@ const User = () => {
 					</p>
 					<p className="user-name">{userInfo?.hoTen}</p>
 					<p
-						className={cn("text-primary", {
+						className={cn("user-type text-primary", {
 							"text-danger": userInfo?.maLoaiNguoiDung === "QuanTri",
 						})}
 					>
@@ -50,7 +49,7 @@ const User = () => {
 
 				<div className="user-show">
 					<div className="infomation">
-						<UserInfo userAccount={userAccount} />
+						<UserInfo userInfo={userInfo} />
 					</div>
 
 					<div className="history">

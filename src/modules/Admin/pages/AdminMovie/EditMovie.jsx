@@ -10,8 +10,11 @@ import { useEffect } from "react";
 import movieAPI from "apis/movieAPI";
 import { updateMovie } from "modules/Admin/slices/adminSlice";
 import useRequest from "hooks/useRequest";
+import { TitleFunction } from "utils/TitleFunction";
 
 const EditMovie = () => {
+	TitleFunction("Edit Movie");
+
 	const [imgPreview, setImgPreview] = useState("");
 	const { movieId } = useParams();
 	const navigate = useNavigate();

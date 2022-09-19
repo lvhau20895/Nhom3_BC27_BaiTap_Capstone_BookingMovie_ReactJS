@@ -8,8 +8,11 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
+import { TitleFunction } from "utils/TitleFunction";
 
 const EditUser = () => {
+	TitleFunction("Edit User");
+
 	const { userId } = useParams();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

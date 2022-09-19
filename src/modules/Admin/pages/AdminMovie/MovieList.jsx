@@ -15,10 +15,13 @@ import {
 } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { TitleFunction } from "utils/TitleFunction";
 
 import "./movieList.scss";
 
 const MovieList = () => {
+	TitleFunction("Movie List");
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { movies, search } = useSelector((state) => state.admin);
