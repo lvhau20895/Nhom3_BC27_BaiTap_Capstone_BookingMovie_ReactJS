@@ -15,7 +15,7 @@ const authAPI = {
 	getUsers: () => {
 		return axiosClient.get("QuanLyNguoiDung/LayDanhSachNguoiDung", {
 			params: {
-				maNhom: "GP03",
+				maNhom: "GP00",
 			},
 		});
 	},
@@ -27,7 +27,7 @@ const authAPI = {
 	addUser: (values) => {
 		return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", {
 			...values,
-			maNhom: "GP03",
+			maNhom: "GP00",
 		});
 	},
 
@@ -60,10 +60,18 @@ const authAPI = {
 		});
 	},
 
+	updateUserClient: (values) => {
+		console.log(values);
+		return axiosClient.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
+			...values,
+			maNhom: "GP03",
+		});
+	},
+
 	searchUser: (value) => {
 		return axiosClient.get("QuanLyNguoiDung/TimKiemNguoiDung", {
 			params: {
-				maNhom: "GP03",
+				maNhom: "GP00",
 				tuKhoa: value,
 			},
 		});

@@ -1,7 +1,5 @@
 import { notification } from "antd";
-import authAPI from "apis/authAPI";
-import useRequest from "hooks/useRequest";
-import { updateUser } from "modules/Admin/slices/userSlice";
+import { updateUser, updateUserClient } from "modules/Admin/slices/userSlice";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -11,7 +9,6 @@ import "./userInfo.scss";
 
 const UserInfo = ({ userInfo }) => {
 	const dispatch = useDispatch();
-	console.log(userInfo);
 
 	useEffect(() => {
 		reset({
@@ -36,7 +33,7 @@ const UserInfo = ({ userInfo }) => {
 			email: "",
 			soDt: "",
 			hoTen: "",
-			maLoaiNguoiDung: null,
+			maLoaiNguoiDung: "",
 		},
 		mode: "onTouched",
 	});
@@ -44,7 +41,7 @@ const UserInfo = ({ userInfo }) => {
 	const onSubmit = async (values) => {
 		console.log(values);
 		try {
-			await dispatch(updateUser(values)).unwrap();
+			await dispatch(updateUserClient(values)).unwrap();
 			await swal("Cập Nhật Thành Công!", "You clicked the 'OK'!", "success");
 		} catch (error) {
 			notification.error({

@@ -56,6 +56,18 @@ export const updateUser = createAsyncThunk(
 	}
 );
 
+export const updateUserClient = createAsyncThunk(
+	"home/admin/updateUserClient",
+	async (values, { dispatch, rejectWithValue }) => {
+		try {
+			await authAPI.updateUserClient(values);
+			dispatch(getUsers());
+		} catch (error) {
+			return rejectWithValue(error);
+		}
+	}
+);
+
 export const searchUser = createAsyncThunk(
 	"home/admin/search",
 	async (value, { rejectWithValue }) => {

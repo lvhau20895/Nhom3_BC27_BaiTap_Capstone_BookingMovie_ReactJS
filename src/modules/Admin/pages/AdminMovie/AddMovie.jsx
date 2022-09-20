@@ -1,4 +1,5 @@
-import { notification } from "antd";
+import { DatePicker, notification } from "antd";
+import dayjs from "dayjs";
 import { addMovie } from "modules/Admin/slices/adminSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -53,6 +54,11 @@ const AddMovie = () => {
 				description: error,
 			});
 		}
+	};
+
+	const handleDateTime = (value) => {
+		console.log(value);
+		setValue("ngayKhoiChieu", dayjs(value).format("DD/MM/YYYY"));
 	};
 
 	const handleChangeImage = (evt) => {
@@ -145,19 +151,12 @@ const AddMovie = () => {
 
 				{/* ngày khởi chiếu */}
 				<div>
-					<label>Ngày Khởi Chiếu</label>
-
-					<input
-						type="text"
-						placeholder="Ngày Khởi Chiếu"
-						{...register("ngayKhoiChieu", {
-							required: {
-								value: true,
-								message: "Vui lòng nhập ngảy khởi chiếu",
-							},
-						})}
+					<label className="d-block">Ngày Khởi Chiếu</label>
+					<DatePicker
+						format={"DD/MM/YYYY"}
+						placeholder="Chọn ngày"
+						onChange={handleDateTime}
 					/>
-					{errors.ngayKhoiChieu && <p>{errors.ngayKhoiChieu.message}</p>}
 				</div>
 
 				{/* hot */}

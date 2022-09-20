@@ -20,6 +20,16 @@
 				font-size: 14px;
 				margin-bottom: 0;
 			}
+
+			.ant-picker {
+				border: none;
+				padding: 0;
+				height: 50px;
+
+				&:focus-within {
+					box-shadow: none;
+				}
+			}
 		}
 
 		.div-image {
